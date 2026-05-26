@@ -1,0 +1,70 @@
+<mat-toolbar class="main-header">
+  <div class="header-content">
+    <!-- Brand Logo -->
+    <div class="brand" (click)="goToHome()">
+      <span class="logo-text">MINI<span>SHOP</span></span>
+    </div>
+
+    <div class="header-actions">
+      <!-- Modern Search Bar -->
+      <div class="search-wrapper">
+        <mat-icon>search</mat-icon>
+        <input 
+          type="text" 
+          placeholder="Search..." 
+          (input)="onSearch($event)" 
+        >
+      </div>
+
+      <nav class="nav-links">
+        <!-- Logged In Links -->
+        <ng-container *ngIf="authService.isLoggedIn()">
+          <button mat-button class="nav-icon-btn" (click)="goToMyOrders()" title="My Orders">
+            <mat-icon>receipt_long</mat-icon>
+            <span class="btn-text">Orders</span>
+          </button>
+
+          <button *ngIf="authService.isAdmin()" mat-button class="admin-btn" (click)="goToAdmin()">
+            <mat-icon>admin_panel_settings</mat-icon>
+            <span class="btn-text">Admin</span>
+          </button>
+        </ng-container>
+
+        <!-- Cart Icon -->
+        <div class="cart-status">
+          <mat-icon [matBadge]="cartService.totalItems()" matBadgeColor="warn">shopping_cart</mat-icon>
+        </div>
+
+        <!-- User Profile Dropdown -->
+        <ng-container *ngIf="authService.isLoggedIn(); else loginButton">
+          <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-btn">
+            <mat-icon>account_circle</mat-icon>
+            <span class="user-display">{{ authService.currentUserEmail() }}</span>
+            <mat-icon>arrow_drop_down</mat-icon>
+          </button>
+
+          <mat-menu #userMenu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="goToProfile()">
+              <mat-icon>person</mat-icon>
+              <span>My Profile</span>
+            </button>
+            <button mat-menu-item (click)="goToMyOrders()">
+              <mat-icon>history</mat-icon>
+              <span>Order History</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="onLogout()" class="logout-item">
+              <mat-icon color="warn">logout</mat-icon>
+              <span style="color: #f44336;">Logout</span>
+            </button>
+          </mat-menu>
+        </ng-container>
+
+        <!-- Login Button for Guest -->
+        <ng-template #loginButton>
+          <button mat-flat-button class="login-btn" (click)="goToLogin()">Login</button>
+        </ng-template>
+      </nav>
+    </div>
+  </div>
+</mat-toolbar>

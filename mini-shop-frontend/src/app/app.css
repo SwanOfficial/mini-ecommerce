@@ -1,0 +1,18 @@
+.app-content {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.main-pane {
+  flex: 3;
+}
+
+.right-pane {
+  flex: 1;
+  min-width: 280px;
+}
+
+.spacer {
+  flex: 1;
+}

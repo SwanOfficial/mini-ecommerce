@@ -1,0 +1,145 @@
+.admin-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.dashboard-header {
+  margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+}
+
+.dashboard-header p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* Stat Cards */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  padding: 24px !important;
+  display: flex !important;
+  align-items: center;
+  gap: 20px;
+  border-radius: 16px !important;
+  border: 1px solid #f1f5f9 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+}
+
+.stat-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-icon mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.orders .stat-icon { background: #e0e7ff; color: #4f46e5; }
+.revenue .stat-icon { background: #dcfce7; color: #16a34a; }
+
+.stat-label {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.stat-value {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+/* Modern Table */
+.table-container-card {
+  border-radius: 16px !important;
+  border: 1px solid #f1f5f9 !important;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+.table-header {
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modern-table th {
+  background: #f8fafc;
+  padding: 14px 24px;
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #64748b;
+}
+
+.modern-table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+  color: #334155;
+}
+
+.id-cell { font-family: monospace; font-weight: 600; color: #6366f1; }
+.amount-cell { font-weight: 700; color: #1e293b; }
+
+/* Item Pills */
+.item-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.item-pill {
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #475569;
+}
+
+.qty { font-weight: 800; color: #1e293b; }
+
+/* Dropdown styling */
+.status-dropdown {
+  width: 160px;
+  margin-top: 10px;
+}
+
+::ng-deep .mat-mdc-form-field-subscript-wrapper { display: none; } /* Space ချွေတာဖို့ */
+
+/* Empty State */
+.empty-row {
+  text-align: center;
+  padding: 60px !important;
+  color: #94a3b8;
+}
+
+.empty-row mat-icon { font-size: 48px; width: 48px; height: 48px; margin-bottom: 10px; }

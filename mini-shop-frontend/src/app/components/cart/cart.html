@@ -1,0 +1,57 @@
+<mat-card class="modern-cart-container">
+  <div class="cart-header">
+    <mat-icon>shopping_bag</mat-icon>
+    <span>Your Shopping Cart</span>
+  </div>
+
+  <mat-card-content>
+    @if (cartService.cartItems().length > 0) {
+      <div class="cart-items-wrapper">
+        @for (item of cartService.cartItems(); track item.id) {
+          <div class="modern-cart-item">
+            <div class="item-details">
+              <span class="item-name">{{ item.name }}</span>
+              <span class="item-price-tag">{{ item.price | currency:'MMK ':'symbol':'1.0-0' }}</span>
+            </div>
+            
+            <button mat-icon-button class="remove-btn" (click)="removeItem(item.id)">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </div>
+        }
+      </div>
+
+      <div class="cart-summary-box">
+        <div class="summary-row">
+          <span>Total Items</span>
+          <span class="summary-val">{{ cartService.totalItems() }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Total Price</span>
+          <span class="summary-val total-price">{{ cartService.totalPrice() | currency:'MMK ':'symbol':'1.0-0' }}</span>
+        </div>
+
+        <button mat-flat-button class="checkout-action-btn" 
+                (click)="checkout()" 
+                [disabled]="cartService.cartItems().length === 0">
+          
+          <mat-icon class="btn-icon">
+            {{ !authService.isLoggedIn() ? 'login' : 'local_shipping' }}
+          </mat-icon>
+
+          @if (!authService.isLoggedIn()) {
+            Login to Checkout
+          } @else {
+            Place Order Now
+          }
+        </button>
+      </div>
+    } @else {
+      <div class="empty-state">
+        <mat-icon>remove_shopping_cart</mat-icon>
+        <p>Your cart is empty.</p>
+        <small>Start shopping to add items!</small>
+      </div>
+    }
+  </mat-card-content>
+</mat-card>

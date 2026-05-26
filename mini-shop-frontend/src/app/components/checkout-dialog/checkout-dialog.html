@@ -1,0 +1,48 @@
+<h2 mat-dialog-title><mat-icon>local_shipping</mat-icon> Checkout Details</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="checkoutForm" class="checkout-form">
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Shipping Address</mat-label>
+      <textarea matInput formControlName="shippingAddress" placeholder="Enter delivery address"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Contact Phone Number</mat-label>
+      <input matInput formControlName="shippingPhone" placeholder="Enter phone number">
+    </mat-form-field>
+
+    <div class="payment-section">
+      <h3>Select Payment Method</h3>
+      <mat-radio-group formControlName="paymentMethod" color="primary">
+        <mat-radio-button value="KPAY">KPay QR Scan</mat-radio-button>
+        <mat-radio-button value="WAVE">WaveMoney QR Scan</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="qr-container">
+      <p class="qr-hint">📢 Please Scan QR and transfer total amount</p>
+      <img src="assets/images/kpay-qr-placeholder.png" alt="Payment QR" class="qr-image">
+    </div>
+
+    <div class="upload-section">
+      <label class="custom-file-upload">
+        <input type="file" (change)="onFileSelected($event)" accept="image/*">
+        <mat-icon>cloud_upload</mat-icon> Upload Payment Slip (Required)
+      </label>
+      
+      <div class="preview-box" *ngIf="imagePreview()">
+        <img [src]="imagePreview()" alt="Slip Preview" class="slip-preview">
+      </div>
+    </div>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="checkoutForm.invalid || !selectedFile">
+    Confirm & Place Order
+  </button>
+</mat-dialog-actions>

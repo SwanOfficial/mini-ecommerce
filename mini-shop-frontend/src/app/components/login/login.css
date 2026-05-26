@@ -1,0 +1,37 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh; /* Browser ရဲ့ အမြင့် ၉၀% မှာ အလယ်ကျနေအောင် */
+  background-color: #f5f5f5;
+}
+
+.auth-card {
+  width: 400px;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.auth-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px !important;
+}
+
+.main-btn {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+}

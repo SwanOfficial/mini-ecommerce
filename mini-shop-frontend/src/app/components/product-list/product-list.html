@@ -1,0 +1,44 @@
+<div class="product-container">
+  <div class="product-grid">
+    @for (product of productService.filteredProducts(); track product.id) {
+      <mat-card class="modern-card" [class.is-out]="product.stock <= 0">
+        <div class="image-wrapper">
+          <img [src]="product.imageUrl" [alt]="product.name" class="product-img" />
+  
+          @if (product.stock > 0) {
+        <span class="stock-tag" [class.low]="product.stock <= 5">
+            {{ product.stock }} left
+        </span>
+        } @else {
+        <span class="stock-tag out">Sold Out</span>
+     }
+  </div>
+
+        <div class="card-body">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <p class="product-price">{{ product.price | currency:'MMK ':'symbol':'1.0-0' }}</p>
+          
+          <div class="status-indicator">
+            <span class="dot" [class.active]="product.stock > 0"></span>
+            <span class="status-text">{{ product.stock > 0 ? 'In Stock' : 'Unavailable' }}</span>
+          </div>
+        </div>
+
+        <mat-card-actions class="card-footer">
+          <button mat-flat-button 
+                  class="add-btn"
+                  (click)="addToCart(product)"
+                  [disabled]="product.stock <= 0">
+            <mat-icon>{{ product.stock > 0 ? 'shopping_bag' : 'do_not_disturb' }}</mat-icon>
+            {{ product.stock > 0 ? 'Add to Bag' : 'Out of Stock' }}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    } @empty {
+      <div class="no-results">
+        <mat-icon>sentiment_dissatisfied</mat-icon>
+        <p>We couldn't find what you're looking for.</p>
+      </div>
+    }
+  </div>
+</div>

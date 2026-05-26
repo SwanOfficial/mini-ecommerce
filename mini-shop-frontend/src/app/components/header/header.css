@@ -1,0 +1,111 @@
+/* Toolbar Container */
+.main-header {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  height: 64px !important;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 !important;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Logo */
+.brand {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.brand .logo-text span {
+  color: #6366f1; /* Modern Indigo */
+}
+
+/* Actions Group */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Search Wrapper */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 10px;
+  width: 220px;
+  transition: all 0.2s ease;
+}
+
+.search-wrapper:focus-within {
+  background: #fff;
+  box-shadow: 0 0 0 2px #6366f122;
+  width: 280px;
+}
+
+.search-wrapper input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 6px 8px;
+  outline: none;
+  font-size: 13px;
+  color: #475569;
+}
+
+.search-wrapper mat-icon {
+  font-size: 18px;
+  color: #94a3b8;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-display {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6366f1;
+  background: #6366f111;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin: 0 4px;
+}
+
+.login-btn {
+  background-color: #1e293b !important;
+  color: white !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  padding: 0 20px !important;
+}
+
+.cart-status {
+  margin: 0 12px;
+  color: #334155;
+  cursor: pointer;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .btn-text, .search-wrapper, .user-display {
+    display: none;
+  }
+}

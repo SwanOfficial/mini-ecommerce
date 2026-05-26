@@ -1,0 +1,96 @@
+<div class="admin-container">
+  <div class="dashboard-header">
+    <h2>Order Management</h2>
+    <p>Monitor and manage your store's transactions</p>
+  </div>
+
+  <div class="summary-grid">
+    <mat-card class="stat-card orders">
+      <div class="stat-icon"><mat-icon>shopping_basket</mat-icon></div>
+      <div class="stat-info">
+        <span class="stat-label">Total Orders</span>
+        <h3 class="stat-value">{{ orderService.orders().length }}</h3>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card revenue">
+      <div class="stat-icon"><mat-icon>payments</mat-icon></div>
+      <div class="stat-info">
+        <span class="stat-label">Total Revenue</span>
+        <h3 class="stat-value">{{ orderService.totalRevenue() | currency:'MMK ':'symbol':'1.0-0' }}</h3>
+      </div>
+    </mat-card>
+  </div>
+
+  <mat-card class="table-container-card">
+    <div class="table-header">
+      <h3>Recent Orders</h3>
+      <button mat-icon-button title="Refresh Data" (click)="orderService.fetchOrders()"><mat-icon>refresh</mat-icon></button>
+    </div>
+
+    <div class="responsive-table">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Items Detail</th>
+            <th>Total Amount</th>
+            <th>Pay Slip</th> <th>Update Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of orderService.orders(); track order.id) {
+            <tr>
+              <td class="id-cell">#{{ order.id }}</td>
+              <td class="customer-cell">
+                <span class="email">{{ order.customerEmail }}</span>
+              </td>
+              <td>
+                <div class="item-stack">
+                  @for (item of order.items; track item.id) {
+                    <div class="item-pill">
+                      {{ item.productName }} <span class="qty">x{{ item.quantity }}</span>
+                    </div>
+                  }
+                </div>
+              </td>
+              <td class="amount-cell">{{ order.totalAmount | currency:'MMK ':'symbol':'1.0-0' }}</td>
+              
+              <td>
+                @if (order.paymentSlipUrl) {
+                  <div class="slip-thumbnail-box" (click)="openSlipPreview(order.paymentSlipUrl)" title="Click to view full image">
+                    
+                    <div class="thumb-overlay">
+                      <mat-icon>visibility</mat-icon>
+                    </div>
+                  </div>
+                } @else {
+                  <span style="color: #94a3b8; font-size: 12px; font-style: italic;">No Slip</span>
+                }
+              </td>
+
+              <td>
+                <mat-form-field appearance="outline" class="status-dropdown" [ngClass]="order.status.toLowerCase()">
+                  <mat-select [value]="order.status" (selectionChange)="onStatusChange(order.id, $event.value)">
+                    <mat-option value="PENDING">🕒 Pending</mat-option>
+                    <mat-option value="SHIPPED">🚚 Shipped</mat-option>
+                    <mat-option value="DELIVERED">✅ Delivered</mat-option>
+                    <mat-option value="CANCELLED">❌ Cancelled</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="empty-row">
+                <mat-icon>inbox</mat-icon>
+                <p>No orders recorded yet.</p>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </mat-card>
+</div>

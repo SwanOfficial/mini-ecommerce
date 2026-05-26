@@ -1,0 +1,122 @@
+<div class="admin-container">
+  <mat-card class="admin-card">
+    <mat-card-title>
+      {{ isEditMode ? 'Update Product' : 'Add New Product' }}
+    </mat-card-title>
+    
+    <mat-card-content>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="admin-form">
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Product Name</mat-label>
+          <input matInput name="name" ngModel required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Price (MMK)</mat-label>
+          <input matInput type="number" name="price" ngModel required />
+        </mat-form-field>
+
+        <div class="file-upload-container">
+          <label class="file-label">Product Image</label>
+          <div class="upload-box" (click)="fileInput.click()">
+            @if (imagePreview) {
+              <img [src]="imagePreview" class="preview-img">
+            } @else {
+              <div class="upload-placeholder">
+                <mat-icon>cloud_upload</mat-icon>
+                <span>Click to upload image</span>
+              </div>
+            }
+            <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" hidden>
+          </div>
+          @if (selectedFile) {
+            <p class="file-name-info">{{ selectedFile.name }}</p>
+          }
+        </div>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea matInput name="description" ngModel rows="3"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Stock Quantity</mat-label>
+          <input matInput type="number" name="stock" ngModel required />
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">
+            {{ isEditMode ? 'Update Product' : 'Save Product' }}
+          </button>
+
+          <button mat-button type="button" (click)="onCancel(f)" *ngIf="isEditMode">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+
+
+  <mat-card class="inventory-card">
+    <mat-card-title>
+      Current Inventory ({{ productService.products().length }} items)
+    </mat-card-title>
+    
+    <mat-card-content>
+      <div class="table-responsive">
+        <table class="inventory-table">
+          <colgroup>
+    <col style="width: 80px;">  <col style="width: 30%;">  <col style="width: 20%;">  <col style="width: 15%;">  <col style="width: 150px;"> </colgroup>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (p of productService.products(); track p.id) {
+              <tr>
+                <td>
+                  <img [src]="p.imageUrl" class="table-thumb" alt="product">
+                </td>
+                <td>{{ p.name }}</td>
+                <td>{{ p.price | currency:'MMK ':'symbol':'1.0-0' }}</td>
+                <td>{{ p.stock }}</td>
+                <td>
+                  <div class="action-btns">
+                    <button mat-icon-button color="accent" (click)="onEdit(p, f)" title="Edit">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="onDelete(p.id!)" title="Delete">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </mat-card-content>
+
+  </mat-card>
+
+  <mat-card class="analytics-card">
+    <mat-card-title>Sales Performance</mat-card-title>
+    <div class="chart-container">
+      <canvas baseChart
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [type]="'line'">
+      </canvas>
+    </div>
+  </mat-card>
+
+  <app-order-admin></app-order-admin>
+</div>

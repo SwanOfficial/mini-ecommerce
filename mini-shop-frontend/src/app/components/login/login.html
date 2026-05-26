@@ -1,0 +1,79 @@
+<div class="login-wrapper">
+  <mat-card class="auth-card mat-elevation-z4">
+    <mat-card-header>
+      <mat-card-title>Mini-Shop Admin</mat-card-title>
+      <mat-card-subtitle>Please login to continue</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="form-container">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email Address</mat-label>
+          <input matInput #loginEmail type="email" placeholder="admin@example.com" required>
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput #loginPassword type="password" placeholder="Enter password" required>
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="auth-actions">
+      <button mat-flat-button color="primary" class="main-btn" 
+              (click)="onLogin(loginEmail.value, loginPassword.value)">
+        Login
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="auth-card mat-elevation-z4" style="margin-top: 20px;">
+    <mat-card-header>
+      <mat-card-title>Create Account</mat-card-title>
+      <mat-card-subtitle>Fill details to register</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="form-container">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput #regUsername type="text" placeholder="mgmg" required>
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email Address</mat-label>
+          <input matInput #regEmail type="email" placeholder="mgmg@gmail.com" required>
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput #regPassword type="password" placeholder="Enter password" required>
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Phone Number</mat-label>
+          <input matInput #regPhone type="text" placeholder="09xxxxxxxxx">
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Address</mat-label>
+          <input matInput #regAddress type="text" placeholder="Yangon, Myanmar">
+          <mat-icon matSuffix>home</mat-icon>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="auth-actions">
+      <button mat-flat-button color="accent" class="main-btn" 
+              (click)="onSignUp(regUsername.value, regEmail.value, regPassword.value, regPhone.value, regAddress.value)">
+        Register Now
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

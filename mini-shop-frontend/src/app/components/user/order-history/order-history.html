@@ -1,0 +1,51 @@
+<div class="order-container">
+  <div class="page-header">
+    <h2>My Order History</h2>
+    <p class="subtitle">Check the status of your recent orders</p>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-state">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Fetching your orders...</p>
+    </div>
+  } @else if (myOrders().length > 0) {
+    <div class="order-list">
+      @for (order of myOrders(); track order.id) {
+        <mat-card class="modern-order-card">
+          <div class="order-card-header">
+            <div class="id-date">
+              <span class="order-id">Order #{{ order.id }}</span>
+              <span class="order-date">{{ order.orderDate | date:'mediumDate' }}</span>
+            </div>
+            <div class="status-box">
+               <span class="status-badge" [ngClass]="order.status.toLowerCase()">
+                <span class="dot"></span>
+                {{ order.status }}
+              </span>
+            </div>
+          </div>
+          
+          <mat-card-content class="order-card-body">
+            <div class="info-group">
+              <span class="label">Total Amount</span>
+              <span class="amount">{{ order.totalAmount | currency:'MMK ':'symbol':'1.0-0' }}</span>
+            </div>
+            
+            <button mat-stroked-button class="detail-btn">
+              <mat-icon>visibility</mat-icon>
+              View Details
+            </button>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  } @else {
+    <div class="empty-orders">
+      <mat-icon>receipt_long</mat-icon>
+      <h3>No orders yet</h3>
+      <p>When you buy items, your order history will appear here.</p>
+      
+    </div>
+  }
+</div>

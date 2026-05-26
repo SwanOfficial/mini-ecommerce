@@ -1,0 +1,130 @@
+.modern-cart-container {
+  background: #ffffff !important;
+  border: 1px solid #f1f5f9 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03) !important;
+  padding: 20px !important;
+  max-width: 400px;
+  margin: 10px auto;
+  position: sticky;
+  top: 85px;
+}
+
+.cart-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #1e293b;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.cart-header mat-icon {
+  color: #6366f1; /* Indigo Accent */
+}
+
+/* Items List */
+.cart-items-wrapper {
+  max-height: 350px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.modern-cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 8px;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.modern-cart-item:hover {
+  background: #f8fafc;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.item-price-tag {
+  font-size: 13px;
+  color: #10b981; /* Green */
+  font-weight: 500;
+}
+
+.remove-btn {
+  color: #94a3b8 !important;
+}
+
+.remove-btn:hover {
+  color: #ef4444 !important;
+  background: #fee2e2 !important;
+}
+
+/* Summary Box */
+.cart-summary-box {
+  background-color: #f8fafc;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.summary-val {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.total-price {
+  font-size: 18px;
+  color: #1e293b;
+}
+
+/* Action Button */
+.checkout-action-btn {
+  width: 100%;
+  height: 48px !important;
+  margin-top: 15px;
+  background-color: #1e293b !important; /* Dark Slate */
+  color: white !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+}
+
+.btn-icon {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px 10px;
+  color: #94a3b8;
+}
+
+.empty-state mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 10px;
+  opacity: 0.3;
+}
